@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+$(call inherit-product, device/acer/picasso/full_picasso.mk)
+
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 #kernel
@@ -39,6 +41,7 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     libtinyalsa \
     l2ping \
+    brcm_patchram_plus \
     hciconfig \
     hcitool \
     libnetcmdiface \
@@ -49,7 +52,18 @@ PRODUCT_PACKAGES += \
     tinyplay \
     tinycap \
     tinyrec \
-    Torch 
+    Torch \
+    bluetooth.default
+
+PRODUCT_PACKAGES += \
+    e2fsck \
+    libext2fs \
+    libext2_blkid \
+    libext2_uuid \
+    libext2_profile \
+    libext2_com_err \
+    libext2_e2p \
+    make_ext4fs
 
 # ramdisk
 PRODUCT_COPY_FILES += \
@@ -94,6 +108,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/prebuilt/data/srs_processing.cfg:system/data/srs_processing.cfg \
+    $(LOCAL_PATH)/prebuilt/data/gps/lto.dat:data/gps/lto.dat \
     $(LOCAL_PATH)/prebuilt/etc/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # keychars/layout
@@ -135,7 +150,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
@@ -156,7 +171,7 @@ PRODUCT_CHARACTERISTICS := tablet
 
 # Bluetooth config file (IconiaHD project)
 PRODUCT_COPY_FILES += \
-    device/acer/a500/bluetooth/main.nonsmartphone.conf:system/etc/bluetooth/main.conf \
+    device/acer/picasso/bluetooth/main.nonsmartphone.conf:system/etc/bluetooth/main.conf \
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -172,7 +187,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
 
-PRODUCT_NAME := omni_a500
-PRODUCT_DEVICE := a500
+# for Gecko
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.moz.has_home_button=0
+
+# Add GAIA flag to support tablet distribution
+GAIA_DEVICE_TYPE := tablet
+
+PRODUCT_NAME := picasso
+PRODUCT_DEVICE := picasso
 PRODUCT_BRAND := acer
 PRODUCT_MODEL := a500

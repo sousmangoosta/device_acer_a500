@@ -1,3 +1,4 @@
+bin/bcmgps
 bin/glgps_nvidiaTegra2android
 etc/asound.conf
 etc/firmware/bcm4329.hcd
@@ -23,7 +24,6 @@ lib/egl/libGLESv2_tegra.so
 lib/hw/camera.tegra.so
 lib/hw/gps.tegra.so
 lib/hw/gralloc.tegra.so
-lib/hw/hwcomposer.tegra.so
 lib/hw/lights.picasso.so
 lib/hw/sensors.tegra.so
 lib/libardrv_dynamic.so

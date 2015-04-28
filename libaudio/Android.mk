@@ -24,7 +24,8 @@ LOCAL_SRC_FILES := \
 LOCAL_C_INCLUDES += \
 	external/tinyalsa/include \
 	external/expat/lib \
-	$(call include-path-for, audio-utils)
+	system/media/audio_utils/include
+#	$(call include-path-for, audio-utils)
 LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libexpat
 LOCAL_MODULE_TAGS := optional
 

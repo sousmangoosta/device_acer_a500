@@ -14,6 +14,12 @@
 # limitations under the License.
 #
 
+#DO NOT USE SPARSE
+TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
+
+#b2g
+GECKO_CONFIGURE_ARGS := --disable-b2g-ril
+
 # CAMERA
 USE_CAMERA_STUB := false
 
@@ -56,20 +62,20 @@ TARGET_KERNEL_SOURCE := kernel/acer/a500
 TARGET_KERNEL_CONFIG := jellyplay_defconfig
 
 
-#TARGET_PREBUILT_KERNEL := device/acer/a500/prebuilt/zImage
+#TARGET_PREBUILT_KERNEL := device/acer/picasso/prebuilt/zImage
 BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_PAGE_SIZE := 0x00000800
 
 # Recovery
-#TARGET_RECOVERY_KERNEL := device/acer/a500/recovery/recovery_kernel
-#TARGET_RECOVERY_FSTAB := device/acer/a500/recovery/recovery.fstab
-TARGET_RECOVERY_FSTAB := device/acer/a500/ramdisk/fstab.picasso
+#TARGET_RECOVERY_KERNEL := device/acer/picasso/recovery/recovery_kernel
+#TARGET_RECOVERY_FSTAB := device/acer/picasso/recovery/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/acer/picasso/ramdisk/fstab.picasso
 
 # Warning : If you change this, you've to clean before rebuild !
 RECOVERY_FSTAB_VERSION := 2
 
-TARGET_PREBUILT_RECOVERY_KERNEL := device/acer/a500/prebuilt/zImage
+TARGET_PREBUILT_RECOVERY_KERNEL := device/acer/picasso/prebuilt/zImage
 
 # TWRP Settings
 DEVICE_RESOLUTION := 1280x800
@@ -102,8 +108,8 @@ BOARD_CACHE_FILESYSTEM := ext4
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Display
-USE_OPENGL_RENDERER    := true
-BOARD_EGL_CFG          := device/acer/a500/prebuilt/etc/egl.cfg
+USE_OPENGL_RENDERER    := false #hwui need libRS that not compile in B2G
+BOARD_EGL_CFG          := device/acer/picasso/prebuilt/etc/egl.cfg
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 BOARD_USE_SKIA_LCDTEXT := true
 BOARD_USES_HGL := true
@@ -135,9 +141,9 @@ BOARD_HAVE_GPS := true
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/acer/a500/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/acer/a500/bluetooth/bt_vendor.conf
+#BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/acer/picasso/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/acer/picasso/bluetooth/bt_vendor.conf
 
 # USB 
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun/file"
@@ -165,16 +171,21 @@ SENSORS_NEED_SETRATE_ON_ENABLE := true
 
 # Partition
 BOARD_BOOTIMAGE_PARTITION_SIZE      := 8388608
-BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 9999999
-BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 1283457024
-BOARD_USERDATAIMAGE_PARTITION_SIZE  := 13950255104
+#BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 9999999
+#BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 1283457024
+#BOARD_USERDATAIMAGE_PARTITION_SIZE  := 13950255104
+BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 5242880
+#BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 629145600
+BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 153600000
+BOARD_USERDATAIMAGE_PARTITION_SIZE  := 153600000
+#BOARD_USERDATAIMAGE_PARTITION_SIZE  := 29855055872
 BOARD_FLASH_BLOCK_SIZE              := 131072
 
 # SELinux policies
 POLICYVERS   := 24
 
 #BOARD_SEPOLICY_DIRS := \
-#   device/acer/a500/selinux
+#   device/acer/picasso/selinux
 
 #BOARD_SEPOLICY_UNION := \
 #    file_contexts \

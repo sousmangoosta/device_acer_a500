@@ -10,7 +10,7 @@ PROPD=$OUTD/proprietary
 
 while read file; do
     dir=$PROPD/$(dirname $file)
-    [ ! -d $dir ] && mkdir $dir
+    [ ! -d $dir ] && mkdir -p $dir
     adb pull /system/$file $PROPD/$file
 done < proprietary-files.txt
 
