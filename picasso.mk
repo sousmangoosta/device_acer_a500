@@ -71,6 +71,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/ueventd.picasso.rc:root/ueventd.picasso.rc \
     $(LOCAL_PATH)/ramdisk/init.picasso.rc:root/init.picasso.rc \
     $(LOCAL_PATH)/ramdisk/fstab.picasso:root/fstab.picasso 
+
+#system files
+    $(LOCAL_PATH)/ramdisk/volume.cfg:system/etc/volume.cfg 
     
 # firmware
 PRODUCT_COPY_FILES += \
