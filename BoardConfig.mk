@@ -15,7 +15,9 @@
 #
 
 #b2g
-GECKO_CONFIGURE_ARGS := --disable-b2g-ril
+GECKO_CONFIGURE_ARGS := \
+	--disable-b2g-ril \
+	--disable-skia-gpu
 
 # CAMERA
 USE_CAMERA_STUB := false

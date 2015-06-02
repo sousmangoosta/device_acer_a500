@@ -73,7 +73,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/fstab.picasso:root/fstab.picasso 
 
 #system files
-    $(LOCAL_PATH)/ramdisk/volume.cfg:system/etc/volume.cfg 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/volume.cfg:system/etc/volume.cfg 
     
 # firmware
 PRODUCT_COPY_FILES += \
