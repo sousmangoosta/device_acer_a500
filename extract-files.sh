@@ -11,7 +11,11 @@ PROPD=$OUTD/proprietary
 while read file; do
     dir=$PROPD/$(dirname $file)
     [ ! -d $dir ] && mkdir -p $dir
-    adb pull /system/$file $PROPD/$file
+    if [[ -f "${WORKSPACE}/${DEVICE}.tar.bz2" ]]; then
+        tar jxvf ${WORKSPACE}/${DEVICE}.tar.bz2 -C $PROPD $FILE
+    else
+        adb pull /system/$file $PROPD/$file
+    fi
 done < proprietary-files.txt
 
 ./setup-makefiles.sh
